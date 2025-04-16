@@ -26,6 +26,9 @@ public class DonHang {
     private double chiPhiGiaoHang;
     @Column(name = "chiphithanhtoan")
     private double chiPhiThanhToan;
+    @Column(name = "tongtien")
+    private double tongtien;
+
 
     @OneToMany(
             fetch = FetchType.LAZY ,

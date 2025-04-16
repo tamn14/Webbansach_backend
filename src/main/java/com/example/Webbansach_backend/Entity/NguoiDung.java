@@ -29,6 +29,8 @@ public class NguoiDung {
     private String sdt ;
     @Column(name = "diachimuahang" , columnDefinition = "text")
     private String diaChiMuaHang ;
+    @Column(name = "diachigiaohang" , columnDefinition = "text")
+    private String diaChiGiaoHang ;
     @OneToMany(
             fetch = FetchType.LAZY ,
             cascade = {
