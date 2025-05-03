@@ -31,6 +31,10 @@ public class NguoiDung {
     private String diaChiMuaHang ;
     @Column(name = "diachigiaohang" , columnDefinition = "text")
     private String diaChiGiaoHang ;
+    @Column(name = "daKichHoat")
+    private boolean daKichHoat ;
+    @Column(name = "maKichHoat")
+    private String maKhichHoat ;
     @OneToMany(
             fetch = FetchType.LAZY ,
             cascade = {
@@ -54,7 +58,7 @@ public class NguoiDung {
     )
     private List<SachYeuThich> sachYeuThichs = new ArrayList<>() ;
     @ManyToMany(
-            fetch = FetchType.LAZY ,
+            fetch = FetchType.EAGER ,
             cascade = {
                     CascadeType.DETACH ,
                     CascadeType.MERGE ,

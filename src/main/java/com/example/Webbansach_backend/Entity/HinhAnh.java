@@ -17,7 +17,7 @@ public class HinhAnh {
     private boolean laIcon ;
     @Column(name = "duongdan")
     private String duongDan  ;
-    @Column(name = "dulieuanh")
+    @Column(name = "dulieuanh" , columnDefinition = "LONGTEXT")
     @Lob
     private String duLieuAnh;
     @ManyToOne(

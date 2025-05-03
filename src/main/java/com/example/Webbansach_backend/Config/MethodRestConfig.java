@@ -13,18 +13,24 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 public class MethodRestConfig implements RepositoryRestConfigurer {
-    private String url = "http://localhost:8080" ;
+    private String url = "http://localhost:5173" ;
     @Autowired
     private EntityManager entityManager;
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        HttpMethod[] DisableMethod = {
-                HttpMethod.POST ,
-                HttpMethod.PUT ,
-                HttpMethod.DELETE ,
-                HttpMethod.PATCH
+//        HttpMethod[] DisableMethod = {
+//                HttpMethod.POST ,
+//                HttpMethod.PUT ,
+//                HttpMethod.DELETE ,
+//                HttpMethod.PATCH
+//
+//        } ;
+        // Cors configuration
+        cors.addMapping("/**")
+                .allowedOrigins("http://localhost:5173")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*");
 
-        } ;
         // cho phep expose id
         config.exposeIdsFor( entityManager.getMetamodel()
                 .getEntities()
@@ -32,11 +38,11 @@ public class MethodRestConfig implements RepositoryRestConfigurer {
                 .map(Type::getJavaType)
                 .toArray(Class[]::new) );
 
-        // Chặn các method DELETE
-        HttpMethod[] phuongThucDelete = {
-                HttpMethod.DELETE
-        };
-        disableHttpMethods(TheLoai.class, config,phuongThucDelete );
+//        // Chặn các method DELETE
+//        HttpMethod[] phuongThucDelete = {
+//                HttpMethod.DELETE
+//        };
+//        disableHttpMethods(TheLoai.class, config,phuongThucDelete );
     }
     private void disableHttpMethods(Class c,
                                     RepositoryRestConfiguration config,
